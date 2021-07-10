@@ -1,7 +1,4 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+const App = ()=> {
   return (
     <div>
       <h1>FoodFast - Web App</h1>
