@@ -1,0 +1,178 @@
+{
+   "waiters": [
+      {
+         "id": 13,
+         "DNI": "34569282",
+         "name": "Juan",
+         "surname": "Perez",
+         "telephone": "341-3876543",
+         "address": "SiempreViva 123",
+         "dateOfBirth": "1993-08-12"
+      },
+      {
+         "id": 17,
+         "DNI": "40291382",
+         "name": "María",
+         "surname": "Hernandez",
+         "telephone": "341-3201092",
+         "address": "Mitre 2345",
+         "dateOfBirth": "1997-02-14"
+      },
+      {
+         "id": 19,
+         "DNI": "37891283",
+         "name": "José",
+         "surname": "García",
+         "telephone": "341-3998877",
+         "address": "Jujuy 987 ",
+         "dateOfBirth": "1994-09-11"
+      }
+   ],
+   "tables": [
+      {
+         "id": 2,
+         "number": 13,
+         "capacity": 4,
+         "idWaiter": 13
+      },
+      {
+         "id": 3,
+         "number": 29,
+         "capacity": 2,
+         "idWaiter": 17
+      },
+      {
+         "id": 5,
+         "number": 31,
+         "capacity": 4,
+         "idWaiter": 13
+      }
+   ],
+   "clients": [
+      {
+         "id": 17,
+         "DNI": "35672536",
+         "name": "Gustavo",
+         "surname": "Buenaventura",
+         "telephone": "341-3298391",
+         "address": "Mitre 344",
+         "dateOfBirth": "1993-05-12"
+      },
+      {
+         "id": 19,
+         "DNI": "33456723",
+         "name": "Héctor",
+         "surname": "Macón",
+         "telephone": "341-3726352",
+         "address": "Sarmiento 982",
+         "dateOfBirth": "1991-06-07"
+      },
+      {
+         "id": 23,
+         "DNI": "41982121",
+         "name": "Carlos",
+         "surname": "Baudelaire",
+         "telephone": "341-3981723",
+         "address": "San Martin 376",
+         "dateOfBirth": "2000-05-23"
+      }
+   ],
+   "reservations": [
+      {
+         "id": 41,
+         "dateAndHourFrom": "2021-12-25T21:00",
+         "dateAndHourUntil": "2021-12-25T23:00",
+         "idClient": 17,
+         "idTable": 2,
+         "idInvoice": 41
+      },
+      {
+         "id": 31,
+         "dateAndHourFrom": "2021-12-27T18:00",
+         "dateAndHourUntil": "2021-12-27T20:00",
+         "idClient": 23,
+         "idTable": 3,
+         "idInvoice": 3
+      },
+      {
+         "id": 19,
+         "dateAndHourFrom": "2021-12-23T15:00",
+         "dateAndHourUntil": "2021-12-23T17:00",
+         "idClient": 19,
+         "idTable": 3,
+         "idInvoice": 7
+      }
+   ],
+   "invoices": [
+      {
+         "idInvoice": 41,
+         "invoiceNumber": "112233",
+         "total": 150.0
+      },
+      {
+         "idInvoice": 7,
+         "invoiceNumber": "334455",
+         "total": 350.99
+      },
+      {
+         "idInvoice": 3,
+         "invoiceNumber": "556677",
+         "total": 1450.0
+      }
+   ],
+   "detailsInvoice": [
+      {
+         "lineNumber": 37,
+         "quantity": 1,
+         "idInvoice": 41,
+         "idMenuOption": 23
+      },
+      {
+         "lineNumber": 41,
+         "quantity": 2,
+         "idInvoice": 7,
+         "idMenuOption": 17
+      },
+      {
+         "lineNumber": 2,
+         "quantity": 1,
+         "idInvoice": 3,
+         "idMenuOption": 29
+      }
+   ],
+   "menuOptions": [
+      {
+         "idMenuOption": 23,
+         "optionName": "Café colombiano",
+         "category": "café",
+         "description": "",
+         "unitPrice": 150.0,
+         "optionNumber": 1,
+         "dateAvailableFrom": "2021-01-01",
+         "dateAvailableUntil": "2021-06-30",
+         "isAvailable": true
+      },
+      {
+         "idMenuOption": 29,
+         "optionName": "Milanesa completa con bebida",
+         "category": "almuerzos",
+         "description": "",
+         "unitPrice": 1450.0,
+         "optionNumber": 2,
+         "dateAvailableFrom": "2021-10-25",
+         "dateAvailableUntil": "2021-07-01",
+         "isAvailable": true
+      },
+      {
+         "idMenuOption": 17,
+         "optionName": "Lágrima",
+         "category": "café",
+         "description": "",
+         "unitPrice": 175.49,
+         "optionNumber": 3,
+         "dateAvailableFrom": "2021-06-24",
+         "dateAvailableUntil": "2021-07-02",
+         "isAvailable": true
+      }
+   ]
+}
