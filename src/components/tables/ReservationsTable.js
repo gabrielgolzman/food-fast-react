@@ -4,26 +4,32 @@ import MaterialTable from 'material-table';
 
 let mock = require('../../data/mock.json');
 let columns1 = [
-   { title: 'Nombre', field: 'optionName' },
-   { title: 'Precio Unitario', field: 'unitPrice', type: 'currency' },
-   { title: '¿Disponible?', field: 'isAvailable', type: 'boolean' },
+   { title: 'Fecha-Hora', field: 'dateAndHourFrom', type: 'datetime' },
+   { title: 'Cantidad de personas', field: 'qtyPersons', type: 'numeric' },
+   { title: 'Estado', field: 'state', type: 'string' },
+   {
+      title: 'Número de mesa',
+      field: 'idTable',
+      type: 'numeric',
+   },
 ];
-const ProductTable = () => {
+const ReservationsTable = () => {
    return (
       <div>
          <MaterialTable
-            title="Productos"
+            title="Reservas"
             columns={columns1}
-            data={mock.menuOptions}
+            data={mock.reservations}
             actions={[
                {
-                  icon: 'edit',
-                  tooltip: 'Edit Item',
-                  //onClick: (event, rowData) => alert("You saved " + rowData.name)
+                  icon: 'add',
+                  tooltip: 'Agregar Reserva',
+                  isFreeAction: true,
+                  onClick: (event) => alert('You want to add a new row'),
                },
                (rowData) => ({
                   icon: 'delete',
-                  tooltip: 'Delete Item',
+                  tooltip: 'Borrar reserva',
                   //onClick: (event, rowData) => confirm("You want to delete " + rowData.name),
                   //disabled: rowData.birthYear < 2000
                }),
@@ -37,4 +43,4 @@ const ProductTable = () => {
    );
 };
 
-export default ProductTable;
+export default ReservationsTable;

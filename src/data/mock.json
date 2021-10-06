@@ -3,8 +3,7 @@
       {
          "id": 13,
          "DNI": "34569282",
-         "name": "Juan",
-         "surname": "Perez",
+         "name": "Juan Perez",
          "telephone": "341-3876543",
          "address": "SiempreViva 123",
          "dateOfBirth": "1993-08-12"
@@ -12,8 +11,7 @@
       {
          "id": 17,
          "DNI": "40291382",
-         "name": "María",
-         "surname": "Hernandez",
+         "name": "María Hernandez",
          "telephone": "341-3201092",
          "address": "Mitre 2345",
          "dateOfBirth": "1997-02-14"
@@ -21,8 +19,7 @@
       {
          "id": 19,
          "DNI": "37891283",
-         "name": "José",
-         "surname": "García",
+         "name": "José García",
          "telephone": "341-3998877",
          "address": "Jujuy 987 ",
          "dateOfBirth": "1994-09-11"
@@ -84,6 +81,8 @@
          "dateAndHourUntil": "2021-12-25T23:00",
          "idClient": 17,
          "idTable": 2,
+         "state": "En local",
+         "qtyPersons": 4,
          "idInvoice": 41
       },
       {
@@ -92,6 +91,8 @@
          "dateAndHourUntil": "2021-12-27T20:00",
          "idClient": 23,
          "idTable": 3,
+         "state": "Realizada",
+         "qtyPersons": 2,
          "idInvoice": 3
       },
       {
@@ -99,7 +100,9 @@
          "dateAndHourFrom": "2021-12-23T15:00",
          "dateAndHourUntil": "2021-12-23T17:00",
          "idClient": 19,
+         "state": "Realizada",
          "idTable": 3,
+         "qtyPersons": 2,
          "idInvoice": 7
       }
    ],
