@@ -10,7 +10,7 @@ import ReservationTable from './components/tables/ReservationsTable';
 import InvoicesTable from './components/tables/InvoicesTable';
 import TablesTable from './components/tables/TablesTable';
 import WaitersTable from './components/tables/WaitersTable';
-import Layout from './components/util/Layout/Layout';
+import Layout from './components/util/ui/Layout/Layout';
 
 const App = () => {
    const routes = (

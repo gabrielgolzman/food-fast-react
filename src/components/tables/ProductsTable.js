@@ -1,16 +1,28 @@
+import { useState } from 'react';
+
 import local from './local';
 
 import MaterialTable from 'material-table';
+import Modal from '../util/ui/modals/Modal';
 
-let mock = require('../../data/mock.json');
-let columns1 = [
-   { title: 'Nombre', field: 'optionName' },
-   { title: 'Precio Unitario', field: 'unitPrice', type: 'currency' },
-   { title: '¿Disponible?', field: 'isAvailable', type: 'boolean' },
-];
 const ProductsTable = () => {
+   let mock = require('../../data/mock.json');
+   const columns1 = [
+      { title: 'Nombre', field: 'optionName' },
+      { title: 'Precio Unitario', field: 'unitPrice', type: 'currency' },
+      { title: '¿Disponible?', field: 'isAvailable', type: 'boolean' },
+   ];
+   const addProduct = () => {
+      setShowModal((prevProps) => !prevProps.show);
+   };
+   const [showModal, setShowModal] = useState(false);
+
+   const onClicked = () => {
+      setShowModal(!showModal);
+   };
    return (
-      <div>
+      <>
+         <Modal type="add-product" show={showModal} onClicked={onClicked} />
          <MaterialTable
             title="Productos"
             columns={columns1}
@@ -20,7 +32,7 @@ const ProductsTable = () => {
                   icon: 'add',
                   tooltip: 'Agregar Producto',
                   isFreeAction: true,
-                  onClick: (event) => alert('You want to add a new row'),
+                  onClick: (event) => addProduct(),
                },
                {
                   icon: 'edit',
@@ -39,7 +51,7 @@ const ProductsTable = () => {
             }}
             localization={local}
          />
-      </div>
+      </>
    );
 };
 
