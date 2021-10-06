@@ -1,37 +1,53 @@
-import * as React from 'react';
+import { useState } from 'react';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
+import Icon from '@mui/material/Icon';
 
-const drawerWidth = 240;
-const drawer = (
-   <div>
-      <Toolbar />
-      <Typography
-         sx={{ marginLeft: '20px' }}
-         variant="div"
-         noWrap
-         component="div"
-      >
-         Restaurant
-      </Typography>
-      <Divider />
-      <List sx={{ marginLeft: '20px' }}>
-         {['Carta', 'Pedidos', 'Reservas', 'Mozos'].map((text, index) => (
-            <ListItem button key={text}>
-               <ListItemText primary={text} />
-            </ListItem>
-         ))}
-      </List>
-   </div>
-);
+import { DrawerButton } from './Layout.styles';
+
 const Layout = (props) => {
+   const [selectedIndex, setSelectedIndex] = useState(0);
+   const drawerValues = [
+      { icon: 'fastfood', name: 'Carta' },
+      { icon: 'receipt', name: 'Pedidos' },
+      { icon: 'drafts', name: 'Reservas' },
+      { icon: 'group', name: 'Mozos' },
+      { icon: 'restaurantmenuicon', name: 'Mesas' },
+   ];
+   const drawerWidth = 240;
+   const drawer = (
+      <div>
+         <Toolbar />
+         <Divider />
+         <List
+            sx={{
+               display: 'flex',
+               flexDirection: 'column',
+               height: '70%',
+               width: '100%',
+               paddingLeft: '10px',
+            }}
+         >
+            {drawerValues.map((dv, index) => (
+               <DrawerButton
+                  autoFocus={selectedIndex === index}
+                  disableFocusRipple
+                  onClick={() => console.log(dv)}
+                  key={dv.icon}
+               >
+                  <Icon>{dv.icon}</Icon>
+                  <ListItemText disableTypography primary={dv.name} />
+               </DrawerButton>
+            ))}
+         </List>
+      </div>
+   );
+
    return (
       <Box sx={{ display: 'flex' }}>
          <CssBaseline />
