@@ -21,12 +21,6 @@ const ReservationsTable = () => {
             columns={columns1}
             data={mock.reservations}
             actions={[
-               {
-                  icon: 'add',
-                  tooltip: 'Agregar Reserva',
-                  isFreeAction: true,
-                  onClick: (event) => alert('You want to add a new row'),
-               },
                (rowData) => ({
                   icon: 'delete',
                   tooltip: 'Borrar reserva',

@@ -1,6 +1,7 @@
 import { BackgroundModal } from './Modal.styles';
 
 import AddProduct from './products/AddProduct/AddProduct';
+import EditProduct from './products/EditProduct/EditProduct';
 import Backdrop from '../Backdrop/Backdrop';
 
 const Modal = ({ type, data, show, onClicked }) => {
@@ -8,6 +9,9 @@ const Modal = ({ type, data, show, onClicked }) => {
    switch (type) {
       case 'add-product':
          modal = <AddProduct clicked={onClicked} />;
+         break;
+      case 'edit-product':
+         modal = <EditProduct idProduct={data} clicked={onClicked} />;
          break;
       default:
          modal = null;

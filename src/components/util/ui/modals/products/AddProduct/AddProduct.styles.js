@@ -53,7 +53,7 @@ export const TextAreaInput = styled.textarea`
    padding: 12px 30px;
 `;
 
-export const AddButton = styled.input`
+export const MainButton = styled.input`
    width: fit-content;
    padding: 10px 20px;
    border-radius: 30px;

@@ -11,31 +11,29 @@ import {
    DescriptionForm,
    MainButton,
    CancelButton,
-} from './AddProduct.styles';
+} from '../AddProduct/AddProduct.styles';
 
-const AddProduct = ({ clicked }) => {
+const EditProduct = ({ idProduct, clicked }) => {
    const { register, handleSubmit, control } = useForm({
       defaultValues: {
          switch: true,
       },
    });
-   const { addProduct } = useContext(ProductsContext);
+   const { getProduct, modifyProduct } = useContext(ProductsContext);
+   let product = getProduct(idProduct);
 
    const onSubmit = (data) => {
-      addProduct({
-         id: Math.random().toFixed(2),
-         optionName: data.optionName,
-         description: data.description,
-         unitPrice: data.unitPrice,
-         isAvailable: data.switch,
-      });
+      modifyProduct(idProduct, data);
       clicked();
    };
    return (
       <FormContainer onSubmit={handleSubmit(onSubmit)}>
          <MainForm>
             <label>Nombre</label>
-            <TextInput {...register('optionName')} />
+            <TextInput
+               defaultValue={product.optionName}
+               {...register('optionName')}
+            />
             <div style={{ width: '100%' }}>
                <label>¿Disponible?</label>
                <Controller
@@ -54,6 +52,7 @@ const AddProduct = ({ clicked }) => {
             <TextInput
                style={{ width: '40%' }}
                type="number"
+               defaultValue={product.unitPrice}
                step="0.01"
                {...register('unitPrice')}
             />
@@ -61,15 +60,14 @@ const AddProduct = ({ clicked }) => {
          </MainForm>
          <DescriptionForm>
             <label>Descripción</label>
-            <TextAreaInput {...register('description')} />
-            <MainButton
-               type="submit"
-               title="Agregar producto"
-               value="Agregar Producto"
+            <TextAreaInput
+               defaultValue={product.description}
+               {...register('description')}
             />
+            <MainButton type="submit" value="Guardar Producto" />
          </DescriptionForm>
       </FormContainer>
    );
 };
 
-export default AddProduct;
+export default EditProduct;
