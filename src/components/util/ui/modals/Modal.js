@@ -2,6 +2,8 @@ import { BackgroundModal } from './Modal.styles';
 
 import AddProduct from './products/AddProduct/AddProduct';
 import EditProduct from './products/EditProduct/EditProduct';
+import AddWaiter from './waiters/AddWaiter/AddWaiter';
+import EditWaiter from './waiters/EditWaiter/EditWaiter';
 import Backdrop from '../Backdrop/Backdrop';
 
 const Modal = ({ type, data, show, onClicked }) => {
@@ -12,6 +14,12 @@ const Modal = ({ type, data, show, onClicked }) => {
          break;
       case 'edit-product':
          modal = <EditProduct idProduct={data} clicked={onClicked} />;
+         break;
+      case 'add-waiter':
+         modal = <AddWaiter clicked={onClicked} />;
+         break;
+      case 'edit-waiter':
+         modal = <EditWaiter idWaiter={data} clicked={onClicked} />;
          break;
       default:
          modal = null;
