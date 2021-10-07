@@ -14,6 +14,7 @@ import Layout from './components/util/ui/Layout/Layout';
 import { ProductsContextProvider } from './services/products/products.context';
 import { ReservationsContextProvider } from './services/reservations/reservations.context';
 import { WaitersContextProvider } from './services/waiters/waiters.context';
+import { TablesContextProvider } from './services/tables/tables.context';
 
 const App = () => {
    const routes = (
@@ -41,12 +42,14 @@ const App = () => {
       <ProductsContextProvider>
          <ReservationsContextProvider>
             <WaitersContextProvider>
-               <Router>
-                  <Layout>
-                     <h1>FoodFast - Web App</h1>
-                     {routes}
-                  </Layout>
-               </Router>
+               <TablesContextProvider>
+                  <Router>
+                     <Layout>
+                        <h1>FoodFast - Web App</h1>
+                        {routes}
+                     </Layout>
+                  </Router>
+               </TablesContextProvider>
             </WaitersContextProvider>
          </ReservationsContextProvider>
       </ProductsContextProvider>

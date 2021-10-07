@@ -23,7 +23,6 @@ const EditWaiter = ({ idWaiter, clicked }) => {
    let waiter = getWaiter(idWaiter);
 
    const onSubmit = (data) => {
-      console.log(data);
       modifyWaiter(idWaiter, data);
       clicked();
    };

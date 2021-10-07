@@ -18,6 +18,7 @@ const WaitersTable = () => {
    let columns1 = [
       { title: 'Nombre', field: 'name' },
       { title: 'DNI', field: 'DNI' },
+      { title: 'Fecha de nacimiento', field: 'dateOfBirth', type: 'date' },
       { title: 'Teléfono', field: 'telephone' },
       { title: 'Dirección', field: 'address' },
    ];

@@ -15,6 +15,7 @@ import {
 import { ProductsContext } from '../../../../services/products/products.context';
 import { ReservationsContext } from '../../../../services/reservations/reservations.context';
 import { WaitersContext } from '../../../../services/waiters/waiters.context';
+import { TablesContext } from '../../../../services/tables/tables.context';
 
 import Backdrop from '../Backdrop/Backdrop';
 
@@ -22,6 +23,7 @@ const DeleteModal = ({ type, text, id, show, onClicked }) => {
    const { deleteProduct } = useContext(ProductsContext);
    const { deleteReservation } = useContext(ReservationsContext);
    const { deleteWaiter } = useContext(WaitersContext);
+   const { deleteTable } = useContext(TablesContext);
 
    let modalText = '';
 
@@ -44,6 +46,9 @@ const DeleteModal = ({ type, text, id, show, onClicked }) => {
       case 'delete-reservation':
          modalText = <p>¿Desea eliminar la reserva seleccionada ?</p>;
          break;
+      case 'delete-table':
+         modalText = <p>¿Desea eliminar la mesa seleccionada?</p>;
+         break;
       default:
          modalText = null;
    }
@@ -60,6 +65,10 @@ const DeleteModal = ({ type, text, id, show, onClicked }) => {
             break;
          case 'delete-waiter':
             deleteWaiter(id);
+            onClicked();
+            break;
+         case 'delete-table':
+            deleteTable(id);
             onClicked();
             break;
          default:

@@ -1,44 +1,88 @@
+import { useState, useContext } from 'react';
+
 import local from './local';
+import { TablesContext } from '../../services/tables/tables.context';
 
 import MaterialTable from 'material-table';
+import Modal from '../util/ui/modals/Modal';
+import DeleteModal from '../util/ui/modals/DeleteModal';
 
-let mock = require('../../data/mock.json');
-let columns1 = [
-   { title: 'Número de mesa', field: 'number' },
-   { title: 'Capacidad', field: 'capacity' },
-];
 const TablesTable = () => {
+   const [showModal, setShowModal] = useState(false);
+   const [showDeleteModal, setShowDeleteModal] = useState(false);
+   const [type, setType] = useState('');
+   const [idTable, setIdTable] = useState(null);
+   const { tables } = useContext(TablesContext);
+
+   let columns1 = [
+      { title: 'Número de mesa', field: 'number' },
+      { title: 'Capacidad', field: 'capacity' },
+   ];
+
+   const actionClicked = (type, id) => {
+      setShowModal(!showModal);
+      setType(type);
+      setIdTable(id);
+   };
+
+   const actionDeleteClicked = (type, id) => {
+      setShowDeleteModal(!showDeleteModal);
+      setType(type);
+      setIdTable(id);
+   };
+
+   const onClicked = () => {
+      setShowModal(!showModal);
+   };
+   const onDeleteClicked = () => {
+      setShowDeleteModal(!showDeleteModal);
+   };
+
    return (
-      <div>
+      <>
+         <Modal
+            type={type}
+            data={idTable}
+            show={showModal}
+            onClicked={onClicked}
+         />
+         <DeleteModal
+            type={type}
+            id={idTable}
+            show={showDeleteModal}
+            onClicked={onDeleteClicked}
+         />
          <MaterialTable
             title="Mesas"
             columns={columns1}
-            data={mock.tables}
+            data={tables}
             actions={[
                {
                   icon: 'add',
                   tooltip: 'Agregar Mesa',
                   isFreeAction: true,
-                  onClick: (event) => alert('You want to add a new row'),
+                  onClick: (event, rowData) =>
+                     actionClicked('add-table', rowData.id),
                },
                {
                   icon: 'edit',
                   tooltip: 'Editar Mesa',
-                  //onClick: (event, rowData) => alert("You saved " + rowData.name)
+                  onClick: (event, rowData) =>
+                     actionClicked('edit-table', rowData.id),
                },
-               (rowData) => ({
+               {
                   icon: 'delete',
                   tooltip: 'Borrar Mesa',
-                  //onClick: (event, rowData) => confirm("You want to delete " + rowData.name),
-                  //disabled: rowData.birthYear < 2000
-               }),
+                  onClick: (event, rowData) =>
+                     actionDeleteClicked('delete-table', rowData.id),
+               },
             ]}
             options={{
                actionsColumnIndex: -1,
             }}
             localization={local}
          />
-      </div>
+      </>
    );
 };
 
