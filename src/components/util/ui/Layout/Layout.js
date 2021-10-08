@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
@@ -8,8 +10,15 @@ import Toolbar from '@mui/material/Toolbar';
 import Icon from '@mui/material/Icon';
 
 import { DrawerButton, LogoutButton } from './Layout.styles';
+import { AuthenticationContext } from '../../../../services/auth/authentication.context';
 
 const Layout = ({ children }) => {
+   const { onLogout } = useContext(AuthenticationContext);
+
+   const Logout = () => {
+      onLogout();
+   };
+
    const drawerValues = [
       { icon: 'fastfood', name: 'Carta', path: '/' },
       { icon: 'receipt', name: 'Pedidos', path: '/invoices' },
@@ -73,7 +82,7 @@ const Layout = ({ children }) => {
                open
             >
                {drawer}
-               <LogoutButton>Cerrar sesión</LogoutButton>
+               <LogoutButton onClick={Logout}>Cerrar sesión</LogoutButton>
             </Drawer>
          </Box>
          <Box component="main" sx={{ flexGrow: 1, p: 3 }}>

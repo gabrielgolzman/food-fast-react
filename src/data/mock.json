@@ -109,38 +109,46 @@
    "invoices": [
       {
          "idInvoice": 41,
+         "emissionDate": "2021-12-23T17:00",
          "invoiceNumber": "112233",
-         "total": 150.0
+         "total": 150.0,
+         "details": [
+            {
+               "quantity": 1,
+               "title": "Galleta de la fortuna",
+               "unitPrice": "0"
+            },
+            {
+               "quantity": 1,
+               "title": "Lagrima",
+               "unitPrice": "150"
+            }
+         ]
       },
       {
          "idInvoice": 7,
+         "emissionDate": "2021-12-27T20:00",
          "invoiceNumber": "334455",
-         "total": 350.99
+         "total": 350,
+         "details": [
+            {
+               "quantity": 1,
+               "title": "Café con leche",
+               "unitPrice": "150"
+            },
+            {
+               "quantity": 2,
+               "title": "Cortado",
+               "unitPrice": "100"
+            }
+         ]
       },
       {
          "idInvoice": 3,
+         "emissionDate": "2021-12-25T23:00",
          "invoiceNumber": "556677",
-         "total": 1450.0
-      }
-   ],
-   "detailsInvoice": [
-      {
-         "lineNumber": 37,
-         "quantity": 1,
-         "idInvoice": 41,
-         "idMenuOption": 23
-      },
-      {
-         "lineNumber": 41,
-         "quantity": 2,
-         "idInvoice": 7,
-         "idMenuOption": 17
-      },
-      {
-         "lineNumber": 2,
-         "quantity": 1,
-         "idInvoice": 3,
-         "idMenuOption": 29
+         "total": 1450.0,
+         "details": []
       }
    ],
    "menuOptions": [

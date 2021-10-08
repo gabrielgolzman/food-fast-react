@@ -1,26 +1,52 @@
+import { useContext, useState } from 'react';
+
 import local from './local';
+import { InvoicesContext } from '../../services/invoices/invoices.context';
 
 import MaterialTable from 'material-table';
+import Modal from '../util/ui/modals/Modal';
 
-let mock = require('../../data/mock.json');
 let columns1 = [
    { title: 'Número de pedido', field: 'invoiceNumber' },
+   { title: 'Fecha de emisión', field: 'emissionDate', type: 'datetime' },
    { title: 'Total', field: 'total', type: 'currency' },
 ];
 const InvoicesTable = () => {
+   const [showModal, setShowModal] = useState(false);
+   const [type, setType] = useState('');
+   const [idInvoice, setIdInvoice] = useState(null);
+   const { invoices } = useContext(InvoicesContext);
+
+   const actionClicked = (type, id) => {
+      setShowModal(!showModal);
+      setType(type);
+      setIdInvoice(id);
+   };
+
+   const onClicked = () => {
+      setShowModal(!showModal);
+   };
+
    return (
       <div>
+         <Modal
+            type={type}
+            data={idInvoice}
+            show={showModal}
+            onClicked={onClicked}
+         />
          <MaterialTable
             title="Pedidos"
             columns={columns1}
-            data={mock.invoices}
+            data={invoices}
             actions={[
-               (rowData) => ({
+               {
                   icon: 'visibility',
                   tooltip: 'Ver pedido',
-                  //onClick: (event, rowData) => confirm("You want to delete " + rowData.name),
+                  onClick: (event, rowData) =>
+                     actionClicked('view-invoice', rowData.idInvoice),
                   //disabled: rowData.birthYear < 2000
-               }),
+               },
             ]}
             options={{
                actionsColumnIndex: -1,

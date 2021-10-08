@@ -1,4 +1,8 @@
-import { BackgroundModal } from './Modal.styles';
+import {
+   BackgroundModal,
+   BackgroundModalLarge,
+   BackgroundModalAuth,
+} from './Modal.styles';
 
 import AddProduct from './products/AddProduct/AddProduct';
 import EditProduct from './products/EditProduct/EditProduct';
@@ -6,6 +10,8 @@ import AddWaiter from './waiters/AddWaiter/AddWaiter';
 import EditWaiter from './waiters/EditWaiter/EditWaiter';
 import AddTable from './tables/AddTable/AddTable';
 import EditTable from './tables/EditTable/EditTable';
+import ViewInvoice from './invoices/ViewInvoice';
+import AuthModal from './auth/AuthModal';
 import Backdrop from '../Backdrop/Backdrop';
 
 const Modal = ({ type, data, show, onClicked }) => {
@@ -29,6 +35,12 @@ const Modal = ({ type, data, show, onClicked }) => {
       case 'edit-table':
          modal = <EditTable idTable={data} clicked={onClicked} />;
          break;
+      case 'view-invoice':
+         modal = <ViewInvoice idInvoice={data} clicked={onClicked} />;
+         break;
+      case 'auth':
+         modal = <AuthModal />;
+         break;
       default:
          modal = null;
    }
@@ -37,7 +49,13 @@ const Modal = ({ type, data, show, onClicked }) => {
       show && (
          <>
             <Backdrop show={show} clicked={onClicked} />
-            <BackgroundModal>{modal}</BackgroundModal>
+            {type === 'view-invoice' ? (
+               <BackgroundModalLarge>{modal}</BackgroundModalLarge>
+            ) : type === 'auth' ? (
+               <BackgroundModalAuth>{modal}</BackgroundModalAuth>
+            ) : (
+               <BackgroundModal>{modal}</BackgroundModal>
+            )}
          </>
       )
    );
