@@ -39,6 +39,7 @@ export const AuthenticationContextProvider = ({ children }) => {
    const onLogout = async () => {
       await auth.signOut();
       setUser(null);
+      setError(null);
       history.push('/auth');
    };
 
