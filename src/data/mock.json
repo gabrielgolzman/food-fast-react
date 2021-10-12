@@ -77,8 +77,8 @@
    "reservations": [
       {
          "id": 41,
-         "dateAndHourFrom": "2021-12-25T21:00",
-         "dateAndHourUntil": "2021-12-25T23:00",
+         "dateAndHourFrom": "2021-10-12T21:00",
+         "dateAndHourUntil": "2021-10-12T23:00",
          "idClient": 17,
          "idTable": 2,
          "state": "En local",
@@ -86,9 +86,19 @@
          "idInvoice": 41
       },
       {
+         "id": 57,
+         "dateAndHourFrom": "2021-10-14T19:00",
+         "dateAndHourUntil": "2021-12-25T21:00",
+         "idClient": 17,
+         "idTable": 2,
+         "state": "Realizada",
+         "qtyPersons": 4,
+         "idInvoice": 41
+      },
+      {
          "id": 31,
-         "dateAndHourFrom": "2021-12-27T18:00",
-         "dateAndHourUntil": "2021-12-27T20:00",
+         "dateAndHourFrom": "2021-10-12T19:00",
+         "dateAndHourUntil": "2021-10-12T21:00",
          "idClient": 23,
          "idTable": 3,
          "state": "Realizada",
@@ -97,8 +107,8 @@
       },
       {
          "id": 19,
-         "dateAndHourFrom": "2021-12-23T15:00",
-         "dateAndHourUntil": "2021-12-23T17:00",
+         "dateAndHourFrom": "2021-10-12T17:00",
+         "dateAndHourUntil": "2021-1-12T19:00",
          "idClient": 19,
          "state": "Realizada",
          "idTable": 3,
@@ -109,25 +119,20 @@
    "invoices": [
       {
          "idInvoice": 41,
-         "emissionDate": "2021-12-23T17:00",
+         "emissionDate": "2021-10-14T17:00",
          "invoiceNumber": "112233",
          "total": 150.0,
          "details": [
             {
-               "quantity": 1,
-               "title": "Galleta de la fortuna",
-               "unitPrice": "0"
-            },
-            {
-               "quantity": 1,
-               "title": "Lagrima",
+               "quantity": 2,
+               "title": "Café colombiano",
                "unitPrice": "150"
             }
          ]
       },
       {
          "idInvoice": 7,
-         "emissionDate": "2021-12-27T20:00",
+         "emissionDate": "2021-09-27T20:00",
          "invoiceNumber": "334455",
          "total": 350,
          "details": [
@@ -145,7 +150,7 @@
       },
       {
          "idInvoice": 3,
-         "emissionDate": "2021-12-25T23:00",
+         "emissionDate": "2021-09-25T23:00",
          "invoiceNumber": "556677",
          "total": 1450.0,
          "details": []
