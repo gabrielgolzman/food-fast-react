@@ -17,7 +17,6 @@ const AddTable = ({ clicked }) => {
 
    const onSubmit = (data) => {
       addTable({
-         id: Math.random().toFixed(2),
          number: data.number,
          capacity: data.capacity,
       });

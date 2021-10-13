@@ -23,11 +23,10 @@ const AddWaiter = ({ clicked }) => {
 
    const onSubmit = (data) => {
       addWaiter({
-         id: Math.random().toFixed(2),
          name: data.name,
          DNI: data.DNI,
          telephone: data.telephone,
-         dateOfBirth: JSON.stringify(selectedDate),
+         dateOfBirth: selectedDate,
          address: data.address,
       });
       clicked();

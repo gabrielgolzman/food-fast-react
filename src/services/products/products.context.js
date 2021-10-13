@@ -19,7 +19,6 @@ export const ProductsContextProvider = ({ children }) => {
 
    const addProduct = (newProduct) => {
       setProducts([...products, newProduct]);
-      console.log(newProduct);
       axios
          .post('http://localhost:5000/products', newProduct)
          .then((res) => {

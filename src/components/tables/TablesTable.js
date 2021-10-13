@@ -61,20 +61,19 @@ const TablesTable = () => {
                   icon: 'add',
                   tooltip: 'Agregar Mesa',
                   isFreeAction: true,
-                  onClick: (event, rowData) =>
-                     actionClicked('add-table', rowData.id),
+                  onClick: (event, rowData) => actionClicked('add-table'),
                },
                {
                   icon: 'edit',
                   tooltip: 'Editar Mesa',
                   onClick: (event, rowData) =>
-                     actionClicked('edit-table', rowData.id),
+                     actionClicked('edit-table', rowData._id),
                },
                {
                   icon: 'delete',
                   tooltip: 'Borrar Mesa',
                   onClick: (event, rowData) =>
-                     actionDeleteClicked('delete-table', rowData.id),
+                     actionDeleteClicked('delete-table', rowData._id),
                },
             ]}
             options={{

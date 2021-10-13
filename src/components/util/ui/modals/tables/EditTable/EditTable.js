@@ -17,7 +17,6 @@ const EditWaiter = ({ idTable, clicked }) => {
    let table = getTable(idTable);
 
    const onSubmit = (data) => {
-      console.log(data);
       modifyTable(idTable, data);
       clicked();
    };

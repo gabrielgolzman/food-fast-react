@@ -1,32 +1,58 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
+import axios from 'axios';
 
 export const WaitersContext = createContext();
 
-let mock = require('../../data/mock.json');
-
 export const WaitersContextProvider = ({ children }) => {
-   const [waiters, setWaiters] = useState(mock.waiters);
+   const [waiters, setWaiters] = useState([]);
+
+   useEffect(() => {
+      axios
+         .get('http://localhost:5000/waiters')
+         .then((res) => {
+            setWaiters(res.data);
+         })
+         .catch((error) => {
+            console.log(error);
+         });
+   }, [waiters]);
 
    const addWaiter = (newWaiter) => {
       setWaiters([...waiters, newWaiter]);
+      axios
+         .post('http://localhost:5000/waiters', newWaiter)
+         .then((res) => {
+            console.log(res);
+         })
+         .catch((error) => {
+            console.log(error);
+         });
    };
 
    const getWaiter = (id) => {
-      return waiters[waiters.findIndex((wai) => wai.id === id)];
+      return waiters[waiters.findIndex((wai) => wai._id === id)];
    };
 
    const modifyWaiter = (id, waiter) => {
-      let myWaiterIndex = waiters.findIndex((wai) => wai.id === id);
-      waiters[myWaiterIndex].name = waiter.name;
-      waiters[myWaiterIndex].address = waiter.address;
-      waiters[myWaiterIndex].DNI = waiter.DNI;
-      waiters[myWaiterIndex].dateOfBirth = waiter.dateOfBirth;
-      waiters[myWaiterIndex].telephone = waiter.telephone;
+      axios
+         .patch(`http://localhost:5000/waiters/${id}`, waiter)
+         .then((res) => {
+            console.log(res);
+         })
+         .catch((error) => {
+            console.log(error);
+         });
    };
 
    const deleteWaiter = (id) => {
-      const newWaiterArray = waiters.filter((wai) => wai.id !== id);
-      setWaiters([...newWaiterArray]);
+      axios
+         .patch(`http://localhost:5000/waiters/delete/${id}`)
+         .then((res) => {
+            console.log(res);
+         })
+         .catch((error) => {
+            console.log(error);
+         });
    };
 
    return (

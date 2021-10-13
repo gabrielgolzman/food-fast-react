@@ -7,18 +7,18 @@ import MaterialTable from 'material-table';
 import DeleteModal from '../util/ui/modals/DeleteModal';
 
 const ReservationsTable = () => {
-   const { reservations } = useContext(ReservationsContext);
+   const { reservations, toggleReservation } = useContext(ReservationsContext);
    const [showDeleteModal, setShowDeleteModal] = useState(false);
    const [type, setType] = useState('');
    const [idReservation, setIdReservation] = useState(null);
 
    let columns1 = [
-      { title: 'Fecha-Hora', field: 'dateAndHourFrom', type: 'datetime' },
+      { title: 'Fecha-Hora', field: 'dateAndHour', type: 'datetime' },
       { title: 'Cantidad de personas', field: 'qtyPersons', type: 'numeric' },
       { title: 'Estado', field: 'state', type: 'string' },
       {
          title: 'Número de mesa',
-         field: 'idTable',
+         field: 'tableNumber',
          type: 'numeric',
       },
    ];
@@ -52,9 +52,17 @@ const ReservationsTable = () => {
                   onClick: (event, rowData) =>
                      actionDeleteClicked(
                         'delete-reservation',
-                        rowData.id,
+                        rowData._id,
                         null
                      ),
+               }),
+               (rowData) => ({
+                  icon: rowData.state !== 'Realizada' ? 'mail' : 'fastfood',
+                  tooltip:
+                     rowData.state === 'Realizada'
+                        ? 'Habilitar cliente'
+                        : 'Volver estado de reserva',
+                  onClick: (event, rowData) => toggleReservation(rowData._id),
                }),
             ]}
             options={{

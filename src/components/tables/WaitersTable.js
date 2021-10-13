@@ -67,14 +67,13 @@ const WaitersTable = () => {
                   icon: 'add',
                   tooltip: 'Agregar Mozo',
                   isFreeAction: true,
-                  onClick: (event, rowData) =>
-                     actionClicked('add-waiter', rowData.id),
+                  onClick: (event, rowData) => actionClicked('add-waiter'),
                },
                {
                   icon: 'edit',
                   tooltip: 'Editar Mozo',
                   onClick: (event, rowData) =>
-                     actionClicked('edit-waiter', rowData.id),
+                     actionClicked('edit-waiter', rowData._id),
                },
                {
                   icon: 'delete',
@@ -82,7 +81,7 @@ const WaitersTable = () => {
                   onClick: (event, rowData) =>
                      actionDeleteClicked(
                         'delete-waiter',
-                        rowData.id,
+                        rowData._id,
                         rowData.name
                      ),
                },

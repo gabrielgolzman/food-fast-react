@@ -1,29 +1,58 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
+import axios from 'axios';
 
 export const TablesContext = createContext();
 
-let mock = require('../../data/mock.json');
-
 export const TablesContextProvider = ({ children }) => {
-   const [tables, setTables] = useState(mock.tables);
+   const [tables, setTables] = useState([]);
+
+   useEffect(() => {
+      axios
+         .get('http://localhost:5000/tables')
+         .then((res) => {
+            setTables(res.data);
+         })
+         .catch((error) => {
+            console.log(error);
+         });
+   }, [tables]);
 
    const addTable = (newTable) => {
       setTables([...tables, newTable]);
+      axios
+         .post('http://localhost:5000/tables', newTable)
+         .then((res) => {
+            console.log(res);
+         })
+         .catch((error) => {
+            console.log(error);
+         });
    };
 
    const getTable = (id) => {
-      return tables[tables.findIndex((tab) => tab.id === id)];
+      return tables[tables.findIndex((tab) => tab._id === id)];
    };
 
    const modifyTable = (id, table) => {
-      let myTableIndex = tables.findIndex((tab) => tab.id === id);
-      tables[myTableIndex].number = table.number;
-      tables[myTableIndex].capacity = table.capacity;
+      axios
+         .patch(`http://localhost:5000/tables/${id}`, table)
+         .then((res) => {
+            console.log(res);
+         })
+         .catch((error) => {
+            console.log(error);
+         });
    };
 
    const deleteTable = (id) => {
-      const newTablesArray = tables.filter((tab) => tab.id !== id);
-      setTables([...newTablesArray]);
+      axios
+         .patch(`http://localhost:5000/tables/delete/${id}`)
+         .then((res) => {
+            console.log(res);
+         })
+         .catch((error) => {
+            console.log(error);
+         });
    };
 
    return (

@@ -18,12 +18,12 @@ import {
 
 const EditWaiter = ({ idWaiter, clicked }) => {
    const { register, handleSubmit } = useForm();
-   const [selectedDate, handleDateChange] = useState(new Date());
    const { getWaiter, modifyWaiter } = useContext(WaitersContext);
    let waiter = getWaiter(idWaiter);
+   const [selectedDate, handleDateChange] = useState(waiter.dateOfBirth);
 
    const onSubmit = (data) => {
-      modifyWaiter(idWaiter, data);
+      modifyWaiter(idWaiter, { ...data, dateOfBirth: selectedDate });
       clicked();
    };
    return (
@@ -40,7 +40,6 @@ const EditWaiter = ({ idWaiter, clicked }) => {
                <DatePickerContainer>
                   <DatePicker
                      disableFuture
-                     defaultValue={waiter.dateOfBirth}
                      openTo="year"
                      clearLabel="Limpiar"
                      cancelLabel="Cancelar"
@@ -48,7 +47,7 @@ const EditWaiter = ({ idWaiter, clicked }) => {
                      label="Fecha de nacimiento"
                      views={['year', 'month', 'date']}
                      value={selectedDate}
-                     onChange={handleDateChange}
+                     onChange={(date) => handleDateChange(date)}
                   />
                </DatePickerContainer>
                <label>Dirección</label>

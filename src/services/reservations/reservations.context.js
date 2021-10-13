@@ -1,21 +1,49 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
+import axios from 'axios';
 
 export const ReservationsContext = createContext();
 
-let mock = require('../../data/mock.json');
-
 export const ReservationsContextProvider = ({ children }) => {
-   const [reservations, setReservations] = useState(mock.reservations);
+   const [reservations, setReservations] = useState([]);
+
+   useEffect(() => {
+      axios
+         .get('http://localhost:5000/reservations')
+         .then((res) => {
+            setReservations(res.data);
+         })
+         .catch((error) => {
+            console.log(error);
+         });
+   }, [reservations]);
+
+   const toggleReservation = (id) => {
+      axios
+         .patch(`http://localhost:5000/reservations/toggle_admission/${id}`)
+         .then((res) => {
+            console.log(res);
+         })
+         .catch((error) => {
+            console.log(error);
+         });
+   };
 
    const deleteReservation = (id) => {
-      const newReservationArray = reservations.filter((res) => res.id !== id);
-      setReservations([...newReservationArray]);
+      axios
+         .patch(`http://localhost:5000/reservations/delete/${id}`)
+         .then((res) => {
+            console.log(res);
+         })
+         .catch((error) => {
+            console.log(error);
+         });
    };
 
    return (
       <ReservationsContext.Provider
          value={{
             reservations,
+            toggleReservation,
             deleteReservation,
          }}
       >
