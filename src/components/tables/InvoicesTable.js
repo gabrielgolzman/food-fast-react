@@ -6,16 +6,17 @@ import { InvoicesContext } from '../../services/invoices/invoices.context';
 import MaterialTable from 'material-table';
 import Modal from '../util/ui/modals/Modal';
 
-let columns1 = [
-   { title: 'Número de pedido', field: 'invoiceNumber' },
-   { title: 'Fecha de emisión', field: 'emissionDate', type: 'datetime' },
-   { title: 'Total', field: 'total', type: 'currency' },
-];
 const InvoicesTable = () => {
    const [showModal, setShowModal] = useState(false);
    const [type, setType] = useState('');
    const [idInvoice, setIdInvoice] = useState(null);
-   const { invoices } = useContext(InvoicesContext);
+   const { invoices, toggleServed, togglePayed } = useContext(InvoicesContext);
+
+   const columns1 = [
+      { title: 'Número de pedido', field: 'invoiceNumber' },
+      { title: 'Fecha de emisión', field: 'createdAt', type: 'datetime' },
+      { title: 'Total', field: 'total', type: 'currency' },
+   ];
 
    const actionClicked = (type, id) => {
       setShowModal(!showModal);
@@ -44,9 +45,22 @@ const InvoicesTable = () => {
                   icon: 'visibility',
                   tooltip: 'Ver pedido',
                   onClick: (event, rowData) =>
-                     actionClicked('view-invoice', rowData.idInvoice),
-                  //disabled: rowData.birthYear < 2000
+                     actionClicked('view-invoice', rowData._id),
                },
+               (rowData) => ({
+                  icon: rowData.isServed ? 'check' : 'fastfood',
+                  tooltip: rowData.isServed
+                     ? 'pedido no servido'
+                     : 'pedido servido',
+                  onClick: (event, rowData) => toggleServed(rowData._id),
+               }),
+               (rowData) => ({
+                  icon: rowData.isPayed ? 'check' : 'money-variant',
+                  tooltip: rowData.isPayed
+                     ? 'pedido pagado'
+                     : 'pedido aún no pagado',
+                  onClick: (event, rowData) => togglePayed(rowData._id),
+               }),
             ]}
             options={{
                actionsColumnIndex: -1,

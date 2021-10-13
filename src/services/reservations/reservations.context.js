@@ -11,6 +11,7 @@ export const ReservationsContextProvider = ({ children }) => {
          .get('http://localhost:5000/reservations')
          .then((res) => {
             setReservations(res.data);
+            res.send({ status: 200 });
          })
          .catch((error) => {
             console.log(error);
@@ -21,7 +22,7 @@ export const ReservationsContextProvider = ({ children }) => {
       axios
          .patch(`http://localhost:5000/reservations/toggle_admission/${id}`)
          .then((res) => {
-            console.log(res);
+            res.send({ status: 200 });
          })
          .catch((error) => {
             console.log(error);
@@ -32,7 +33,7 @@ export const ReservationsContextProvider = ({ children }) => {
       axios
          .patch(`http://localhost:5000/reservations/delete/${id}`)
          .then((res) => {
-            console.log(res);
+            res.send({ status: 200 });
          })
          .catch((error) => {
             console.log(error);

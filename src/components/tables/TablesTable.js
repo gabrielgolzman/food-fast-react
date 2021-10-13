@@ -12,7 +12,7 @@ const TablesTable = () => {
    const [showDeleteModal, setShowDeleteModal] = useState(false);
    const [type, setType] = useState('');
    const [idTable, setIdTable] = useState(null);
-   const { tables } = useContext(TablesContext);
+   const { tables, resolveWarning } = useContext(TablesContext);
 
    let columns1 = [
       { title: 'Número de mesa', field: 'number' },
@@ -57,6 +57,12 @@ const TablesTable = () => {
             columns={columns1}
             data={tables}
             actions={[
+               (rowData) => ({
+                  icon: 'warning',
+                  tooltip: 'Consulta respondida',
+                  onClick: (event, rowData) => resolveWarning(rowData._id),
+                  hidden: !rowData.needsHelp,
+               }),
                {
                   icon: 'add',
                   tooltip: 'Agregar Mesa',

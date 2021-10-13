@@ -11,6 +11,7 @@ export const TablesContextProvider = ({ children }) => {
          .get('http://localhost:5000/tables')
          .then((res) => {
             setTables(res.data);
+            res.send({ status: 200 });
          })
          .catch((error) => {
             console.log(error);
@@ -22,7 +23,7 @@ export const TablesContextProvider = ({ children }) => {
       axios
          .post('http://localhost:5000/tables', newTable)
          .then((res) => {
-            console.log(res);
+            res.send({ status: 200 });
          })
          .catch((error) => {
             console.log(error);
@@ -37,7 +38,18 @@ export const TablesContextProvider = ({ children }) => {
       axios
          .patch(`http://localhost:5000/tables/${id}`, table)
          .then((res) => {
-            console.log(res);
+            res.send({ status: 200 });
+         })
+         .catch((error) => {
+            console.log(error);
+         });
+   };
+
+   const resolveWarning = (id) => {
+      axios
+         .patch(`http://localhost:5000/tables/toggle_warning/${id}`)
+         .then((res) => {
+            res.send({ status: 200 });
          })
          .catch((error) => {
             console.log(error);
@@ -62,6 +74,7 @@ export const TablesContextProvider = ({ children }) => {
             addTable,
             getTable,
             modifyTable,
+            resolveWarning,
             deleteTable,
          }}
       >

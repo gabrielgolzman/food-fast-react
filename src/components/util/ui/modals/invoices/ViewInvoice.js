@@ -26,7 +26,7 @@ const ViewInvoice = ({ idInvoice, clicked }) => {
       <>
          <Header>Pedido N° {invoice.invoiceNumber}</Header>
          <p>
-            <BoldText> Fecha: </BoldText> {invoice.emissionDate}
+            <BoldText> Fecha: </BoldText> {invoice.createdAt}
          </p>
          <ResumeContainer>{resume}</ResumeContainer>
          <BottomContainer>

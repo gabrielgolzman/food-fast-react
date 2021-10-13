@@ -11,6 +11,7 @@ export const ProductsContextProvider = ({ children }) => {
          .get('http://localhost:5000/products')
          .then((res) => {
             setProducts(res.data);
+            res.send({ status: 200 });
          })
          .catch((error) => {
             console.log(error);
@@ -22,7 +23,7 @@ export const ProductsContextProvider = ({ children }) => {
       axios
          .post('http://localhost:5000/products', newProduct)
          .then((res) => {
-            console.log(res);
+            res.send({ status: 200 });
          })
          .catch((error) => {
             console.log(error);
@@ -37,7 +38,7 @@ export const ProductsContextProvider = ({ children }) => {
       axios
          .patch(`http://localhost:5000/products/${id}`, product)
          .then((res) => {
-            console.log(res);
+            res.send({ status: 200 });
          })
          .catch((error) => {
             console.log(error);
@@ -48,7 +49,7 @@ export const ProductsContextProvider = ({ children }) => {
       axios
          .patch(`http://localhost:5000/products/delete/${id}`)
          .then((res) => {
-            console.log(res);
+            res.send({ status: 200 });
          })
          .catch((error) => {
             console.log(error);
