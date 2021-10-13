@@ -14,11 +14,7 @@ import {
 } from '../AddProduct/AddProduct.styles';
 
 const EditProduct = ({ idProduct, clicked }) => {
-   const { register, handleSubmit, control } = useForm({
-      defaultValues: {
-         switch: true,
-      },
-   });
+   const { register, handleSubmit, control } = useForm();
    const { getProduct, modifyProduct } = useContext(ProductsContext);
    let product = getProduct(idProduct);
 
@@ -37,7 +33,7 @@ const EditProduct = ({ idProduct, clicked }) => {
             <div style={{ width: '100%' }}>
                <label>¿Disponible?</label>
                <Controller
-                  name="switch"
+                  name="isAvailable"
                   control={control}
                   render={({ field: { onChange, value } }) => (
                      <Switch

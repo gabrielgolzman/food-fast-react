@@ -1,33 +1,59 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
+import axios from 'axios';
 
 export const ProductsContext = createContext();
 
-let mock = require('../../data/mock.json');
-
 export const ProductsContextProvider = ({ children }) => {
-   const [products, setProducts] = useState(mock.menuOptions);
+   const [products, setProducts] = useState([]);
+
+   useEffect(() => {
+      axios
+         .get('http://localhost:5000/products')
+         .then((res) => {
+            setProducts(res.data);
+         })
+         .catch((error) => {
+            console.log(error);
+         });
+   }, [products]);
 
    const addProduct = (newProduct) => {
       setProducts([...products, newProduct]);
+      console.log(newProduct);
+      axios
+         .post('http://localhost:5000/products', newProduct)
+         .then((res) => {
+            console.log(res);
+         })
+         .catch((error) => {
+            console.log(error);
+         });
    };
 
    const getProduct = (id) => {
-      return products[products.findIndex((pro) => pro.idMenuOption === id)];
+      return products[products.findIndex((pro) => pro._id === id)];
    };
 
    const modifyProduct = (id, product) => {
-      let myProductIndex = products.findIndex((pro) => pro.idMenuOption === id);
-      products[myProductIndex].optionName = product.optionName;
-      products[myProductIndex].unitPrice = product.unitPrice;
-      products[myProductIndex].isAvailable = product.switch;
-      products[myProductIndex].description = product.description;
+      axios
+         .patch(`http://localhost:5000/products/${id}`, product)
+         .then((res) => {
+            console.log(res);
+         })
+         .catch((error) => {
+            console.log(error);
+         });
    };
 
    const deleteProduct = (id) => {
-      const newProductsArray = products.filter(
-         (pro) => pro.idMenuOption !== id
-      );
-      setProducts([...newProductsArray]);
+      axios
+         .patch(`http://localhost:5000/products/delete/${id}`)
+         .then((res) => {
+            console.log(res);
+         })
+         .catch((error) => {
+            console.log(error);
+         });
    };
 
    return (

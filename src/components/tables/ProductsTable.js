@@ -17,6 +17,7 @@ const ProductsTable = () => {
 
    const columns1 = [
       { title: 'Nombre', field: 'optionName' },
+      { title: 'Categoría', field: 'category' },
       { title: 'Precio Unitario', field: 'unitPrice', type: 'currency' },
       { title: '¿Disponible?', field: 'isAvailable', type: 'boolean' },
    ];
@@ -70,7 +71,7 @@ const ProductsTable = () => {
                   icon: 'edit',
                   tooltip: 'Editar Producto',
                   onClick: (event, rowData) =>
-                     actionClicked('edit-product', rowData.idMenuOption),
+                     actionClicked('edit-product', rowData._id),
                },
                {
                   icon: 'delete',
@@ -78,7 +79,7 @@ const ProductsTable = () => {
                   onClick: (event, rowData) =>
                      actionDeleteClicked(
                         'delete-product',
-                        rowData.idMenuOption,
+                        rowData._id,
                         rowData.optionName
                      ),
                },

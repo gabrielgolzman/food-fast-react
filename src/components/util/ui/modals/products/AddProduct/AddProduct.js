@@ -23,11 +23,12 @@ const AddProduct = ({ clicked }) => {
 
    const onSubmit = (data) => {
       addProduct({
-         id: Math.random().toFixed(2),
          optionName: data.optionName,
+         category: data.category,
          description: data.description,
          unitPrice: data.unitPrice,
          isAvailable: data.switch,
+         isDeleted: false,
       });
       clicked();
    };
@@ -36,6 +37,8 @@ const AddProduct = ({ clicked }) => {
          <MainForm>
             <label>Nombre</label>
             <TextInput {...register('optionName')} />
+            <label>Categoría</label>
+            <TextInput {...register('category')} />
             <div style={{ width: '100%' }}>
                <label>¿Disponible?</label>
                <Controller

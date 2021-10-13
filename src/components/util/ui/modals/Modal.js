@@ -1,5 +1,6 @@
 import {
    BackgroundModal,
+   BackgroundModalMedium,
    BackgroundModalLarge,
    BackgroundModalAuth,
 } from './Modal.styles';
@@ -53,6 +54,8 @@ const Modal = ({ type, data, show, onClicked }) => {
                <BackgroundModalLarge>{modal}</BackgroundModalLarge>
             ) : type === 'auth' ? (
                <BackgroundModalAuth>{modal}</BackgroundModalAuth>
+            ) : type === 'add-product' ? (
+               <BackgroundModalMedium>{modal}</BackgroundModalMedium>
             ) : (
                <BackgroundModal>{modal}</BackgroundModal>
             )}
