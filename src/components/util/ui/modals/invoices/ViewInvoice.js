@@ -22,11 +22,28 @@ const ViewInvoice = ({ idInvoice, clicked }) => {
       </ResumeRow>
    ));
 
+   const dateParsed = new Date(invoice.createdAt);
+   const dateString =
+      dateParsed.getDate('es-AR', {
+         day: '2-digit',
+      }) +
+      ' del ' +
+      dateParsed.getMonth() +
+      ' de ' +
+      dateParsed.getFullYear() +
+      ' a las ' +
+      dateParsed.getHours() +
+      ' horas';
+
    return (
       <>
          <Header>Pedido N° {invoice.invoiceNumber}</Header>
          <p>
-            <BoldText> Fecha: </BoldText> {invoice.createdAt}
+            <BoldText> Fecha: </BoldText> {dateString}
+         </p>
+         <p>
+            <BoldText> Cliente: </BoldText> {invoice.client.name} -{' DNI: '}
+            {invoice.client.DNI}
          </p>
          <ResumeContainer>{resume}</ResumeContainer>
          <BottomContainer>

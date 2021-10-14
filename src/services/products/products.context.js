@@ -7,15 +7,20 @@ export const ProductsContextProvider = ({ children }) => {
    const [products, setProducts] = useState([]);
 
    useEffect(() => {
+      let unmounted = false;
       axios
          .get('http://localhost:5000/products')
          .then((res) => {
-            setProducts(res.data);
-            res.send({ status: 200 });
+            if (!unmounted) {
+               setProducts(res.data);
+            }
          })
          .catch((error) => {
             console.log(error);
          });
+      return () => {
+         unmounted = true;
+      };
    }, [products]);
 
    const addProduct = (newProduct) => {

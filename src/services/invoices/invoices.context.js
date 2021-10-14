@@ -7,15 +7,20 @@ export const InvoicesContextProvider = ({ children }) => {
    const [invoices, setInvoices] = useState([]);
 
    useEffect(() => {
+      let unmounted = false;
       axios
          .get('http://localhost:5000/invoices')
          .then((res) => {
-            setInvoices(res.data);
-            res.send({ status: 200 });
+            if (!unmounted) {
+               setInvoices(res.data);
+            }
          })
          .catch((error) => {
             console.log(error);
          });
+      return () => {
+         unmounted = true;
+      };
    }, [invoices]);
 
    const getInvoice = (id) => {

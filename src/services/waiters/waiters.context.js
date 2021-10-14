@@ -7,14 +7,18 @@ export const WaitersContextProvider = ({ children }) => {
    const [waiters, setWaiters] = useState([]);
 
    useEffect(() => {
+      let unmounted = false;
       axios
          .get('http://localhost:5000/waiters')
          .then((res) => {
-            setWaiters(res.data);
+            if (!unmounted) setWaiters(res.data);
          })
          .catch((error) => {
             console.log(error);
          });
+      return () => {
+         unmounted = true;
+      };
    }, [waiters]);
 
    const addWaiter = (newWaiter) => {

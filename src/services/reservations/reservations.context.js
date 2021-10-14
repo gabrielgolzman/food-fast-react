@@ -7,15 +7,18 @@ export const ReservationsContextProvider = ({ children }) => {
    const [reservations, setReservations] = useState([]);
 
    useEffect(() => {
+      let unmounted = false;
       axios
          .get('http://localhost:5000/reservations')
          .then((res) => {
-            setReservations(res.data);
-            res.send({ status: 200 });
+            if (!unmounted) setReservations(res.data);
          })
          .catch((error) => {
             console.log(error);
          });
+      return () => {
+         unmounted = true;
+      };
    }, [reservations]);
 
    const toggleReservation = (id) => {
