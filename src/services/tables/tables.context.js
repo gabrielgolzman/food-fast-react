@@ -9,7 +9,7 @@ export const TablesContextProvider = ({ children }) => {
    useEffect(() => {
       console.log('Tables mounted');
       axios
-         .get('http://localhost:5000/tables')
+         .get('http://192.168.0.6:5000/tables')
          .then((res) => {
             setTables(res.data);
          })
@@ -20,7 +20,7 @@ export const TablesContextProvider = ({ children }) => {
 
    const addTable = (newTable) => {
       axios
-         .post('http://localhost:5000/tables', newTable)
+         .post('http://192.168.0.6:5000/tables', newTable)
          .then((res) => {
             setTables([...tables, newTable]);
          })
@@ -35,7 +35,7 @@ export const TablesContextProvider = ({ children }) => {
 
    const modifyTable = (id, table) => {
       axios
-         .patch(`http://localhost:5000/tables/${id}`, table)
+         .patch(`http://192.168.0.6:5000/tables/${id}`, table)
          .then((res) => {
             res.send({ status: 200 });
          })
@@ -46,7 +46,7 @@ export const TablesContextProvider = ({ children }) => {
 
    const resolveWarning = (id) => {
       axios
-         .patch(`http://localhost:5000/tables/toggle_warning/${id}`)
+         .patch(`http://192.168.0.6:5000/tables/toggle_warning/${id}`)
          .then((res) => {
             res.send({ status: 200 });
          })
@@ -57,7 +57,7 @@ export const TablesContextProvider = ({ children }) => {
 
    const deleteTable = (id) => {
       axios
-         .patch(`http://localhost:5000/tables/delete/${id}`)
+         .patch(`http://192.168.0.6:5000/tables/delete/${id}`)
          .then((res) => {
             console.log(res);
          })

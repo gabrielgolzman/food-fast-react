@@ -9,7 +9,7 @@ export const InvoicesContextProvider = ({ children }) => {
    useEffect(() => {
       console.log('invoices mounted');
       axios
-         .get('http://localhost:5000/invoices')
+         .get('http://192.168.0.6:5000/invoices')
          .then((res) => {
             setInvoices(res.data);
          })
@@ -24,7 +24,7 @@ export const InvoicesContextProvider = ({ children }) => {
 
    const toggleServed = (id) => {
       axios
-         .patch(`http://localhost:5000/invoices/toggle_served/${id}`)
+         .patch(`http://192.168.0.6:5000/invoices/toggle_served/${id}`)
          .then((res) => {
             res.send({ status: 200 });
          })
@@ -35,7 +35,7 @@ export const InvoicesContextProvider = ({ children }) => {
 
    const togglePayed = (id) => {
       axios
-         .patch(`http://localhost:5000/invoices/toggle_payed/${id}`)
+         .patch(`http://192.168.0.6:5000/invoices/toggle_payed/${id}`)
          .then((res) => {
             res.send({ status: 200 });
          })

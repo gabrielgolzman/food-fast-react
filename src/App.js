@@ -10,6 +10,7 @@ import WaitersTable from './components/tables/WaitersTable';
 import Layout from './components/util/ui/Layout/Layout';
 import Login from './components/auth/Login';
 import { ProductsContextProvider } from './services/products/products.context';
+import { SocketContextProvider } from './services/socket/socket.context';
 import { ReservationsContextProvider } from './services/reservations/reservations.context';
 import { WaitersContextProvider } from './services/waiters/waiters.context';
 import { TablesContextProvider } from './services/tables/tables.context';
@@ -65,15 +66,17 @@ const App = () => {
    );
 
    return (
-      <ProductsContextProvider>
-         <ReservationsContextProvider>
-            <WaitersContextProvider>
-               <TablesContextProvider>
-                  <InvoicesContextProvider>{routes}</InvoicesContextProvider>
-               </TablesContextProvider>
-            </WaitersContextProvider>
-         </ReservationsContextProvider>
-      </ProductsContextProvider>
+      <SocketContextProvider>
+         <ProductsContextProvider>
+            <ReservationsContextProvider>
+               <WaitersContextProvider>
+                  <TablesContextProvider>
+                     <InvoicesContextProvider>{routes}</InvoicesContextProvider>
+                  </TablesContextProvider>
+               </WaitersContextProvider>
+            </ReservationsContextProvider>
+         </ProductsContextProvider>
+      </SocketContextProvider>
    );
 };
 

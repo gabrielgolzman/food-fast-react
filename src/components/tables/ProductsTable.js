@@ -2,6 +2,7 @@ import { useState, useContext } from 'react';
 
 import local from './local';
 import { ProductsContext } from '../../services/products/products.context';
+import { useSockets } from '../../services/socket/socket.context';
 
 import MaterialTable from 'material-table';
 import Modal from '../util/ui/modals/Modal';
@@ -14,6 +15,7 @@ const ProductsTable = () => {
    const [productName, setProductName] = useState('');
    const [idProduct, setIdProduct] = useState(null);
    const { products } = useContext(ProductsContext);
+   const { socket } = useSockets();
 
    const columns1 = [
       { title: 'Nombre', field: 'optionName' },
@@ -21,6 +23,7 @@ const ProductsTable = () => {
       { title: 'Precio Unitario', field: 'unitPrice', type: 'currency' },
       { title: '¿Disponible?', field: 'isAvailable', type: 'boolean' },
    ];
+
    const actionClicked = (type, id) => {
       setShowModal(!showModal);
       setType(type);
