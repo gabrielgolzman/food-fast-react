@@ -35,9 +35,9 @@ const AddWaiter = ({ clicked }) => {
       <FormContainer onSubmit={handleSubmit(onSubmit)}>
          <MainForm>
             <label>Nombre</label>
-            <TextInput {...register('name')} />
+            <TextInput required {...register('name')} />
             <label>DNI</label>
-            <TextInput {...register('DNI')} />
+            <TextInput required {...register('DNI')} />
             <CancelButton onClick={clicked}>Cancelar</CancelButton>
          </MainForm>
          <DescriptionForm>
@@ -45,6 +45,7 @@ const AddWaiter = ({ clicked }) => {
                <DatePickerContainer>
                   <DatePicker
                      disableFuture
+                     required
                      openTo="year"
                      clearLabel="Limpiar"
                      cancelLabel="Cancelar"
@@ -56,9 +57,9 @@ const AddWaiter = ({ clicked }) => {
                   />
                </DatePickerContainer>
                <label>Dirección</label>
-               <TextInput {...register('address')} />
+               <TextInput required {...register('address')} />
                <label>Teléfono</label>
-               <TextInput {...register('telephone')} />
+               <TextInput required {...register('telephone')} />
             </MuiPickersUtilsProvider>
             <MainButton type="submit" value="Agregar Mozo" />
          </DescriptionForm>

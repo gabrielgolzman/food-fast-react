@@ -36,9 +36,9 @@ const AddProduct = ({ clicked }) => {
       <FormContainer onSubmit={handleSubmit(onSubmit)}>
          <MainForm>
             <label>Nombre</label>
-            <TextInput {...register('optionName')} />
+            <TextInput required {...register('optionName')} />
             <label>Categoría</label>
-            <TextInput {...register('category')} />
+            <TextInput required {...register('category')} />
             <div style={{ width: '100%' }}>
                <label>¿Disponible?</label>
                <Controller
@@ -47,6 +47,7 @@ const AddProduct = ({ clicked }) => {
                   render={({ field: { onChange, value } }) => (
                      <Switch
                         defaultChecked
+                        required
                         onChange={(e) => onChange(e.target.checked)}
                         checked={value}
                      />
@@ -55,6 +56,7 @@ const AddProduct = ({ clicked }) => {
             </div>
             <label>Precio unitario</label>
             <TextInput
+               required
                style={{ width: '40%' }}
                type="number"
                step="0.01"
@@ -64,7 +66,7 @@ const AddProduct = ({ clicked }) => {
          </MainForm>
          <DescriptionForm>
             <label>Descripción</label>
-            <TextAreaInput {...register('description')} />
+            <TextAreaInput required {...register('description')} />
             <MainButton
                type="submit"
                title="Agregar producto"

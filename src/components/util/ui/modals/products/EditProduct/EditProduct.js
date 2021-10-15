@@ -27,6 +27,7 @@ const EditProduct = ({ idProduct, clicked }) => {
          <MainForm>
             <label>Nombre</label>
             <TextInput
+               required
                defaultValue={product.optionName}
                {...register('optionName')}
             />
@@ -37,6 +38,7 @@ const EditProduct = ({ idProduct, clicked }) => {
                   control={control}
                   render={({ field: { onChange, value } }) => (
                      <Switch
+                        required
                         defaultChecked
                         onChange={(e) => onChange(e.target.checked)}
                         checked={value}
@@ -46,6 +48,7 @@ const EditProduct = ({ idProduct, clicked }) => {
             </div>
             <label>Precio unitario</label>
             <TextInput
+               required
                style={{ width: '40%' }}
                type="number"
                defaultValue={product.unitPrice}
@@ -57,6 +60,7 @@ const EditProduct = ({ idProduct, clicked }) => {
          <DescriptionForm>
             <label>Descripción</label>
             <TextAreaInput
+               required
                defaultValue={product.description}
                {...register('description')}
             />

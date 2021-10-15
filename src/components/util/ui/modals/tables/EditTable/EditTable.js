@@ -24,12 +24,17 @@ const EditWaiter = ({ idTable, clicked }) => {
       <FormContainer onSubmit={handleSubmit(onSubmit)}>
          <MainForm>
             <label>Número de mesa</label>
-            <TextInput defaultValue={table.number} {...register('number')} />
+            <TextInput
+               required
+               defaultValue={table.number}
+               {...register('number')}
+            />
             <CancelButton onClick={clicked}>Cancelar</CancelButton>
          </MainForm>
          <DescriptionForm>
             <label>Capacidad</label>
             <TextInput
+               required
                defaultValue={table.capacity}
                {...register('capacity')}
             />

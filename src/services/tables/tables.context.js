@@ -7,21 +7,16 @@ export const TablesContextProvider = ({ children }) => {
    const [tables, setTables] = useState([]);
 
    useEffect(() => {
-      let unmounted = false;
+      console.log('Tables mounted');
       axios
          .get('http://localhost:5000/tables')
          .then((res) => {
-            if (!unmounted) {
-               setTables(res.data);
-            }
+            setTables(res.data);
          })
          .catch((error) => {
             console.log(error);
          });
-      return () => {
-         unmounted = true;
-      };
-   }, [tables]);
+   }, []);
 
    const addTable = (newTable) => {
       axios

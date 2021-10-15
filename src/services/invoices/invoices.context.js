@@ -7,21 +7,16 @@ export const InvoicesContextProvider = ({ children }) => {
    const [invoices, setInvoices] = useState([]);
 
    useEffect(() => {
-      let unmounted = false;
+      console.log('invoices mounted');
       axios
          .get('http://localhost:5000/invoices')
          .then((res) => {
-            if (!unmounted) {
-               setInvoices(res.data);
-            }
+            setInvoices(res.data);
          })
          .catch((error) => {
             console.log(error);
          });
-      return () => {
-         unmounted = true;
-      };
-   }, [invoices]);
+   }, []);
 
    const getInvoice = (id) => {
       return invoices[invoices.findIndex((inv) => inv._id === id)];

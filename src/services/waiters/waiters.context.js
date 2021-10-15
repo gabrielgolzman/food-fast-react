@@ -7,26 +7,24 @@ export const WaitersContextProvider = ({ children }) => {
    const [waiters, setWaiters] = useState([]);
 
    useEffect(() => {
-      let unmounted = false;
+      console.log('Waiters');
       axios
          .get('http://localhost:5000/waiters')
          .then((res) => {
-            if (!unmounted) setWaiters(res.data);
+            setWaiters(res.data);
          })
          .catch((error) => {
             console.log(error);
          });
-      return () => {
-         unmounted = true;
-      };
-   }, [waiters]);
+   }, []);
 
    const addWaiter = (newWaiter) => {
-      setWaiters([...waiters, newWaiter]);
       axios
          .post('http://localhost:5000/waiters', newWaiter)
          .then((res) => {
-            console.log(res);
+            newWaiter = { ...newWaiter, _id: res.data.waiterId };
+            console.log(newWaiter);
+            setWaiters([...waiters, newWaiter]);
          })
          .catch((error) => {
             console.log(error);
@@ -41,7 +39,10 @@ export const WaitersContextProvider = ({ children }) => {
       axios
          .patch(`http://localhost:5000/waiters/${id}`, waiter)
          .then((res) => {
-            console.log(res);
+            let newWaiters = [...waiters];
+            newWaiters[waiters.findIndex((wai) => wai._id === id)] =
+               res.data.modifiedWaiter;
+            setWaiters(newWaiters);
          })
          .catch((error) => {
             console.log(error);
@@ -52,7 +53,12 @@ export const WaitersContextProvider = ({ children }) => {
       axios
          .patch(`http://localhost:5000/waiters/delete/${id}`)
          .then((res) => {
-            console.log(res);
+            let newWaiters = [...waiters];
+            newWaiters.splice(
+               waiters.findIndex((wai) => wai._id === id),
+               1
+            );
+            setWaiters(newWaiters);
          })
          .catch((error) => {
             console.log(error);

@@ -21,18 +21,29 @@ const EditWaiter = ({ idWaiter, clicked }) => {
    const { getWaiter, modifyWaiter } = useContext(WaitersContext);
    let waiter = getWaiter(idWaiter);
    const [selectedDate, handleDateChange] = useState(waiter.dateOfBirth);
+   console.log(selectedDate);
 
    const onSubmit = (data) => {
-      modifyWaiter(idWaiter, { ...data, dateOfBirth: selectedDate });
+      console.log(data, selectedDate);
+      const modifiedWaiter = { ...data, dateOfBirth: selectedDate };
+      modifyWaiter(idWaiter, modifiedWaiter);
       clicked();
    };
    return (
       <FormContainer onSubmit={handleSubmit(onSubmit)}>
          <MainForm>
             <label>Nombre</label>
-            <TextInput defaultValue={waiter.name} {...register('name')} />
+            <TextInput
+               required
+               defaultValue={waiter.name}
+               {...register('name')}
+            />
             <label>DNI</label>
-            <TextInput defaultValue={waiter.DNI} {...register('DNI')} />
+            <TextInput
+               required
+               defaultValue={waiter.DNI}
+               {...register('DNI')}
+            />
             <CancelButton onClick={clicked}>Cancelar</CancelButton>
          </MainForm>
          <DescriptionForm>
@@ -41,6 +52,7 @@ const EditWaiter = ({ idWaiter, clicked }) => {
                   <DatePicker
                      disableFuture
                      openTo="year"
+                     required
                      clearLabel="Limpiar"
                      cancelLabel="Cancelar"
                      format="dd/MM/yyyy"
@@ -52,11 +64,13 @@ const EditWaiter = ({ idWaiter, clicked }) => {
                </DatePickerContainer>
                <label>Dirección</label>
                <TextInput
+                  required
                   defaultValue={waiter.address}
                   {...register('address')}
                />
                <label>Teléfono</label>
                <TextInput
+                  required
                   defaultValue={waiter.telephone}
                   {...register('telephone')}
                />

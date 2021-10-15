@@ -7,28 +7,23 @@ export const ProductsContextProvider = ({ children }) => {
    const [products, setProducts] = useState([]);
 
    useEffect(() => {
-      let unmounted = false;
+      console.log('Products mounted');
       axios
          .get('http://localhost:5000/products')
          .then((res) => {
-            if (!unmounted) {
-               setProducts(res.data);
-            }
+            setProducts(res.data);
          })
          .catch((error) => {
             console.log(error);
          });
-      return () => {
-         unmounted = true;
-      };
-   }, [products]);
+   }, []);
 
    const addProduct = (newProduct) => {
-      setProducts([...products, newProduct]);
       axios
          .post('http://localhost:5000/products', newProduct)
          .then((res) => {
-            res.send({ status: 200 });
+            newProduct = { ...newProduct, _id: res.data.productId };
+            setProducts([...products, newProduct]);
          })
          .catch((error) => {
             console.log(error);
@@ -43,7 +38,10 @@ export const ProductsContextProvider = ({ children }) => {
       axios
          .patch(`http://localhost:5000/products/${id}`, product)
          .then((res) => {
-            res.send({ status: 200 });
+            let newProducts = [...products];
+            newProducts[products.findIndex((pro) => pro._id === id)] =
+               res.data.modifiedProduct;
+            setProducts(newProducts);
          })
          .catch((error) => {
             console.log(error);
@@ -54,7 +52,12 @@ export const ProductsContextProvider = ({ children }) => {
       axios
          .patch(`http://localhost:5000/products/delete/${id}`)
          .then((res) => {
-            res.send({ status: 200 });
+            let newProducts = [...products];
+            newProducts.splice(
+               products.findIndex((pro) => pro._id === id),
+               1
+            );
+            setProducts(newProducts);
          })
          .catch((error) => {
             console.log(error);
