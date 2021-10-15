@@ -26,12 +26,19 @@ const AddTable = ({ clicked }) => {
       <FormContainer onSubmit={handleSubmit(onSubmit)}>
          <MainForm>
             <label>Número de mesa</label>
-            <TextInput type="number" step="1" min="0" {...register('number')} />
+            <TextInput
+               required
+               type="number"
+               step="1"
+               min="0"
+               {...register('number')}
+            />
             <CancelButton onClick={clicked}>Cancelar</CancelButton>
          </MainForm>
          <DescriptionForm>
             <label>Capacidad</label>
             <TextInput
+               required
                type="number"
                step="1"
                min="0"
