@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthenticationContext } from '../../../../../services/auth/authentication.context';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -17,10 +17,6 @@ const AuthModal = () => {
    const onSubmit = (data) => {
       onLogin(data.email, data.password);
    };
-
-   useEffect(() => {
-      console.log(isLoading);
-   }, [isLoading]);
 
    return (
       <FormContainer onSubmit={handleSubmit(onSubmit)}>

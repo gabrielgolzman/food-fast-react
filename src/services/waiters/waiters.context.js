@@ -23,7 +23,6 @@ export const WaitersContextProvider = ({ children }) => {
          .post('http://192.168.0.6:5000/waiters', newWaiter)
          .then((res) => {
             newWaiter = { ...newWaiter, _id: res.data.waiterId };
-            console.log(newWaiter);
             setWaiters([...waiters, newWaiter]);
          })
          .catch((error) => {

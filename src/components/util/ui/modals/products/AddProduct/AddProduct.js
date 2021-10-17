@@ -59,6 +59,7 @@ const AddProduct = ({ clicked }) => {
                required
                style={{ width: '40%' }}
                type="number"
+               min={0}
                step="0.01"
                {...register('unitPrice')}
             />

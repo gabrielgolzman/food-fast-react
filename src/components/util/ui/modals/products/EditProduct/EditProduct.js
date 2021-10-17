@@ -38,7 +38,6 @@ const EditProduct = ({ idProduct, clicked }) => {
                   control={control}
                   render={({ field: { onChange, value } }) => (
                      <Switch
-                        required
                         defaultChecked
                         onChange={(e) => onChange(e.target.checked)}
                         checked={value}

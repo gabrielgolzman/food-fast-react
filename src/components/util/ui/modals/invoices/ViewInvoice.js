@@ -28,7 +28,7 @@ const ViewInvoice = ({ idInvoice, clicked }) => {
          day: '2-digit',
       }) +
       ' del ' +
-      dateParsed.getMonth() +
+      (dateParsed.getMonth() + 1) +
       ' de ' +
       dateParsed.getFullYear() +
       ' a las ' +
