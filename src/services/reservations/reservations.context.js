@@ -28,7 +28,7 @@ export const ReservationsContextProvider = ({ children }) => {
 
    useEffect(() => {
       axios
-         .get('http://192.168.0.6:5000/reservations')
+         .get('http://192.168.1.42:5000/reservations')
          .then((res) => {
             setReservations(res.data);
          })
@@ -39,7 +39,7 @@ export const ReservationsContextProvider = ({ children }) => {
 
    const toggleReservation = (id) => {
       axios
-         .patch(`http://192.168.0.6:5000/reservations/toggle_admission/${id}`)
+         .patch(`http://192.168.1.42:5000/reservations/toggle_admission/${id}`)
          .then((res) => {
             let newReservations = [...reservations];
             let oldRes =
@@ -58,7 +58,7 @@ export const ReservationsContextProvider = ({ children }) => {
 
    const deleteReservation = (id) => {
       axios
-         .patch(`http://192.168.0.6:5000/reservations/delete/${id}`)
+         .patch(`http://192.168.1.42:5000/reservations/delete/${id}`)
          .then((res) => {
             let newReservations = [...reservations];
             newReservations.splice(

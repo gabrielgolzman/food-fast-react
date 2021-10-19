@@ -12,7 +12,7 @@ export const TablesContextProvider = ({ children }) => {
    useEffect(() => {
       console.log('Tables mounted');
       axios
-         .get('http://192.168.0.6:5000/tables')
+         .get('http://192.168.1.42:5000/tables')
          .then((res) => {
             setTables(res.data);
          })
@@ -24,7 +24,7 @@ export const TablesContextProvider = ({ children }) => {
    useEffect(() => {
       socket.on(EVENTS.SERVER.CLIENT.HELP_ASKED, (number) => {
          axios
-            .get('http://192.168.0.6:5000/tables')
+            .get('http://192.168.1.42:5000/tables')
             .then((res) => {
                setTables(res.data);
             })
@@ -36,7 +36,7 @@ export const TablesContextProvider = ({ children }) => {
 
    const addTable = (newTable) => {
       axios
-         .post('http://192.168.0.6:5000/tables', newTable)
+         .post('http://192.168.1.42:5000/tables', newTable)
          .then((res) => {
             newTable = { ...newTable, _id: res.data.tableId };
             setTables([...tables, newTable]);
@@ -52,7 +52,7 @@ export const TablesContextProvider = ({ children }) => {
 
    const modifyTable = (id, table) => {
       axios
-         .patch(`http://192.168.0.6:5000/tables/${id}`, table)
+         .patch(`http://192.168.1.42:5000/tables/${id}`, table)
          .then((res) => {
             let newTables = [...tables];
             newTables[tables.findIndex((tab) => tab._id === id)] =
@@ -66,7 +66,7 @@ export const TablesContextProvider = ({ children }) => {
 
    const resolveWarning = (id) => {
       axios
-         .patch(`http://192.168.0.6:5000/tables/toggle_warning/${id}`)
+         .patch(`http://192.168.1.42:5000/tables/toggle_warning/${id}`)
          .then((res) => {
             let newTables = [...tables];
             let oldTab = newTables[tables.findIndex((tab) => tab._id === id)];
@@ -81,7 +81,7 @@ export const TablesContextProvider = ({ children }) => {
 
    const deleteTable = (id) => {
       axios
-         .patch(`http://192.168.0.6:5000/tables/delete/${id}`)
+         .patch(`http://192.168.1.42:5000/tables/delete/${id}`)
          .then((res) => {
             let newTables = [...tables];
             newTables.splice(

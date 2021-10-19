@@ -39,7 +39,11 @@ const AuthModal = () => {
             {isLoading ? (
                <CircularProgress color="warning" />
             ) : (
-               <MainButton type="submit" value="Iniciar sesión" />
+               <MainButton
+                  style={{ margin: '0 0 40px 0' }}
+                  type="submit"
+                  value="Iniciar sesión"
+               />
             )}
          </ButtonContainer>
       </FormContainer>
