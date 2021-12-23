@@ -12,7 +12,7 @@ export const InvoicesContextProvider = ({ children }) => {
    useEffect(() => {
       console.log('invoices mounted');
       axios
-         .get('http://192.168.1.42:5000/invoices')
+         .get('http://192.168.0.6:5000/invoices')
          .then((res) => {
             setInvoices(res.data);
          })
@@ -23,7 +23,7 @@ export const InvoicesContextProvider = ({ children }) => {
 
    useEffect(() => {
       socket.on(EVENTS.SERVER.CLIENT.NEW_INVOICE, (invoice) => {
-         axios.get('http://192.168.1.42:5000/invoices').then((res) => {
+         axios.get('http://192.168.0.6:5000/invoices').then((res) => {
             setInvoices(res.data);
          });
       });
@@ -35,7 +35,7 @@ export const InvoicesContextProvider = ({ children }) => {
 
    const toggleServed = (id) => {
       axios
-         .patch(`http://192.168.1.42:5000/invoices/toggle_served/${id}`)
+         .patch(`http://192.168.0.6:5000/invoices/toggle_served/${id}`)
          .then((res) => {
             let newInvoices = [...invoices];
             let oldInv =
@@ -52,7 +52,7 @@ export const InvoicesContextProvider = ({ children }) => {
 
    const togglePayed = (id) => {
       axios
-         .patch(`http://192.168.1.42:5000/invoices/toggle_payed/${id}`)
+         .patch(`http://192.168.0.6:5000/invoices/toggle_payed/${id}`)
          .then((res) => {
             res.send({ status: 200 });
          })

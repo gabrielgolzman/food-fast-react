@@ -9,7 +9,7 @@ export const WaitersContextProvider = ({ children }) => {
    useEffect(() => {
       console.log('Waiters');
       axios
-         .get('http://192.168.1.42:5000/waiters')
+         .get('http://192.168.0.6:5000/waiters')
          .then((res) => {
             setWaiters(res.data);
          })
@@ -20,7 +20,7 @@ export const WaitersContextProvider = ({ children }) => {
 
    const addWaiter = (newWaiter) => {
       axios
-         .post('http://192.168.1.42:5000/waiters', newWaiter)
+         .post('http://192.168.0.6:5000/waiters', newWaiter)
          .then((res) => {
             newWaiter = { ...newWaiter, _id: res.data.waiterId };
             setWaiters([...waiters, newWaiter]);
@@ -36,7 +36,7 @@ export const WaitersContextProvider = ({ children }) => {
 
    const modifyWaiter = (id, waiter) => {
       axios
-         .patch(`http://192.168.1.42:5000/waiters/${id}`, waiter)
+         .patch(`http://192.168.0.6:5000/waiters/${id}`, waiter)
          .then((res) => {
             let newWaiters = [...waiters];
             newWaiters[waiters.findIndex((wai) => wai._id === id)] =
@@ -50,7 +50,7 @@ export const WaitersContextProvider = ({ children }) => {
 
    const deleteWaiter = (id) => {
       axios
-         .patch(`http://192.168.1.42:5000/waiters/delete/${id}`)
+         .patch(`http://192.168.0.6:5000/waiters/delete/${id}`)
          .then((res) => {
             let newWaiters = [...waiters];
             newWaiters.splice(
