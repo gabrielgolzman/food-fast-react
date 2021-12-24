@@ -14,6 +14,7 @@ import { AuthenticationContext } from '../../../../services/auth/authentication.
 
 const Layout = ({ children }) => {
    const { onLogout } = useContext(AuthenticationContext);
+   console.log('hello')
 
    const Logout = () => {
       onLogout();
